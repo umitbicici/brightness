@@ -14,10 +14,10 @@ packages:
 
 settings:
   base:
-    MARKETING_VERSION: 0.1.1
+    MARKETING_VERSION: 0.1.2
     # Sparkle EdDSA public key (the private key lives in the login Keychain and in CI secrets).
     SPARKLE_PUBLIC_KEY: R5FF7B+nhBF88bh7Y+OgyqMmDjoQeJkyjdy162pXcag=
-    CURRENT_PROJECT_VERSION: 2
+    CURRENT_PROJECT_VERSION: 3
     SWIFT_VERSION: "6.0"
     SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
     SWIFT_APPROACHABLE_CONCURRENCY: YES
