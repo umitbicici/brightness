@@ -22,7 +22,7 @@ jobs:
       TAG: ${{ github.ref_name }}
       SIGNED: ${{ secrets.DEVELOPER_ID_CERTIFICATE != '' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Generate the Xcode project
         run: |
@@ -76,7 +76,11 @@ jobs:
           VERSION="${TAG#v}"
           mkdir -p dist/updates
           ditto -c -k --sequesterRsrc --keepParent dist/Brightness.app "dist/updates/Brightness-$VERSION.zip"
-          hdiutil create -volname Brightness -srcfolder dist/Brightness.app -ov -format UDZO "dist/Brightness-$VERSION.dmg"
+          # DMG with the app and an Applications shortcut to drag it onto.
+          mkdir -p "$RUNNER_TEMP/dmg"
+          ditto dist/Brightness.app "$RUNNER_TEMP/dmg/Brightness.app"
+          ln -s /Applications "$RUNNER_TEMP/dmg/Applications"
+          hdiutil create -volname Brightness -srcfolder "$RUNNER_TEMP/dmg" -ov -format UDZO "dist/Brightness-$VERSION.dmg"
 
       - name: Generate the Sparkle appcast
         env:
