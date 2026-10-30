@@ -21,7 +21,10 @@ settings:
     SWIFT_VERSION: "6.0"
     SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
     SWIFT_APPROACHABLE_CONCURRENCY: YES
-    ENABLE_HARDENED_RUNTIME: YES
+    # Required for notarization only; the release workflow turns it on for
+    # Developer ID builds. With ad-hoc signing it would block loading the
+    # embedded Sparkle framework (library validation needs a Team ID).
+    ENABLE_HARDENED_RUNTIME: NO
     DEAD_CODE_STRIPPING: YES
 
 targets:
