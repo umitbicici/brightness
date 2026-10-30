@@ -1,0 +1,6 @@
+.DS_Store
+
+# Xcode (the project is generated from project.yml by XcodeGen)
+/build/
+Brightness.xcodeproj/
+xcuserdata/
